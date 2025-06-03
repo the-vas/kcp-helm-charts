@@ -12,6 +12,7 @@ etcd:
   enabled: true
   image: quay.io/coreos/etcd
   tag: v3.5.15
+  containerSecurityContext: []
   resources:
     requests:
       cpu: 500m
@@ -29,13 +30,14 @@ etcd:
     enabled: false
     maxUnavailable: 1
   storageClassName: ""
-  tolerations: []
-   #When configured, this will add tolerations to the pods.
-   #tolerations:
-   #    - key: "kcp"
-   #      operator: "Equal"
-   #      value: "true"
-   #      effect: "NoSchedule"
+  tolerations:
+    []
+    #When configured, this will add tolerations to the pods.
+    #tolerations:
+    #    - key: "kcp"
+    #      operator: "Equal"
+    #      value: "true"
+    #      effect: "NoSchedule"
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -57,6 +59,8 @@ kcp:
   tag: ""
   pullPolicy: IfNotPresent
   v: "3"
+  containerSecurityContext:
+    readOnlyRootFilesystem: true
   logicalClusterAdminFlag: true
   externalLogicalClusterAdminFlag: true
   # enabled "batteries" (see kcp start --help for available batteries).
@@ -89,9 +93,9 @@ kcp:
     enabled: false
     fileName: auth-token.csv
     config: |
-        user-1-token,user-1,1111-1111-1111-1111,"team-1"
-        admin-token,admin,5555-5555-5555-5555,"system:kcp:admin"
-        system-token,system,6666-6666-6666-6666,"system:masters"
+      user-1-token,user-1,1111-1111-1111-1111,"team-1"
+      admin-token,admin,5555-5555-5555-5555,"system:kcp:admin"
+      system-token,system,6666-6666-6666-6666,"system:masters"
   authorization:
     webhook:
       # When configured, this Secret must contain a single key, "kubeconfig", containing
@@ -114,13 +118,14 @@ kcp:
   podDisruptionBudget:
     enabled: false
     minAvailable: 1
-  tolerations: []
-   #When configured, this will add tolerations to the pods.
-   #tolerations:
-   #    - key: "kcp"
-   #      operator: "Equal"
-   #      value: "true"
-   #      effect: "NoSchedule"
+  tolerations:
+    []
+    #When configured, this will add tolerations to the pods.
+    #tolerations:
+    #    - key: "kcp"
+    #      operator: "Equal"
+    #      value: "true"
+    #      effect: "NoSchedule"
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -142,6 +147,7 @@ kcpFrontProxy:
   tag: ""
   pullPolicy: IfNotPresent
   v: "4"
+  containerSecurityContext: []
   shardsKubeConfigFlag: true
   openshiftRoute:
     enabled: false
@@ -228,13 +234,14 @@ kcpFrontProxy:
   # - name: example-vw-serving-cert
   #   mountPath: /etc/example-vw-serving-cert
   extraFlags: []
-  tolerations: []
-   #When configured, this will add tolerations to the pods.
-   #tolerations:
-   #    - key: "kcp"
-   #      operator: "Equal"
-   #      value: "true"
-   #      effect: "NoSchedule"
+  tolerations:
+    []
+    #When configured, this will add tolerations to the pods.
+    #tolerations:
+    #    - key: "kcp"
+    #      operator: "Equal"
+    #      value: "true"
+    #      effect: "NoSchedule"
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -289,7 +296,7 @@ certificates:
   subject: {}
   # add additional dns names that should be embedded into the kcp server certificate.
   dnsNames:
-  - localhost
+    - localhost
   # additional ip addresses to be embedded in the etcd server and peer certs. Can be useful e.g. when using Istio you can pass "127.0.0.6" so the sidecar IP is included.
   ipAddresses: []
 letsEncrypt:

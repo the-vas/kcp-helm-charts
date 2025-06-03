@@ -114,6 +114,10 @@ spec:
         - name: kcp
           image: {{ .Values.kcp.image }}:{{- include "kcp.version" . }}
           imagePullPolicy: {{ .Values.kcp.pullPolicy }}
+          {{- if .Values.kcp.containerSecurityContext }}
+          securityContext:
+            {{- toYaml .Values.kcp.containerSecurityContext | nindent 12 }}
+          {{- end }}
           securityContext:
             readOnlyRootFilesystem: true
           ports:
