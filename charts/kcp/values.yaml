@@ -31,12 +31,12 @@ etcd:
     maxUnavailable: 1
   storageClassName: ""
   tolerations: []
-    #When configured, this will add tolerations to the pods.
-    #tolerations:
-    #    - key: "kcp"
-    #      operator: "Equal"
-    #      value: "true"
-    #      effect: "NoSchedule"
+  # When configured, this will add tolerations to the pods.
+  # tolerations:
+  #   - key: "kcp"
+  #     operator: "Equal"
+  #     value: "true"
+  #     effect: "NoSchedule"
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
