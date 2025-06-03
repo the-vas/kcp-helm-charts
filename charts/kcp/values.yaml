@@ -30,8 +30,7 @@ etcd:
     enabled: false
     maxUnavailable: 1
   storageClassName: ""
-  tolerations:
-    []
+  tolerations: []
     #When configured, this will add tolerations to the pods.
     #tolerations:
     #    - key: "kcp"
