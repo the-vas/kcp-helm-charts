@@ -117,14 +117,13 @@ kcp:
   podDisruptionBudget:
     enabled: false
     minAvailable: 1
-  tolerations:
-    []
-    #When configured, this will add tolerations to the pods.
-    #tolerations:
-    #    - key: "kcp"
-    #      operator: "Equal"
-    #      value: "true"
-    #      effect: "NoSchedule"
+  tolerations: []
+  # When configured, this will add tolerations to the pods.
+  # tolerations:
+  #   - key: "kcp"
+  #     operator: "Equal"
+  #     value: "true"
+  #     effect: "NoSchedule"
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -233,14 +232,13 @@ kcpFrontProxy:
   # - name: example-vw-serving-cert
   #   mountPath: /etc/example-vw-serving-cert
   extraFlags: []
-  tolerations:
-    []
-    #When configured, this will add tolerations to the pods.
-    #tolerations:
-    #    - key: "kcp"
-    #      operator: "Equal"
-    #      value: "true"
-    #      effect: "NoSchedule"
+  tolerations: []
+  # When configured, this will add tolerations to the pods.
+  # tolerations:
+  #   - key: "kcp"
+  #     operator: "Equal"
+  #     value: "true"
+  #     effect: "NoSchedule"
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
