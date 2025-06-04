@@ -55,6 +55,10 @@ spec:
       containers:
         - name: etcd
           image: {{ .Values.etcd.image }}:{{ .Values.etcd.tag }}
+          {{- if .Values.etcd.containerSecurityContext }}
+          securityContext:
+            {{- toYaml .Values.etcd.containerSecurityContext | nindent 12 }}
+          {{- end }}
           command:
           - etcd
           - --name=$(HOSTNAME)

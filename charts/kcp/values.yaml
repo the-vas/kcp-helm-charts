@@ -12,6 +12,7 @@ etcd:
   enabled: true
   image: quay.io/coreos/etcd
   tag: v3.5.15
+  containerSecurityContext: []
   resources:
     requests:
       cpu: 500m
@@ -57,6 +58,8 @@ kcp:
   tag: ""
   pullPolicy: IfNotPresent
   v: "3"
+  containerSecurityContext:
+    readOnlyRootFilesystem: true
   logicalClusterAdminFlag: true
   externalLogicalClusterAdminFlag: true
   # enabled "batteries" (see kcp start --help for available batteries).
@@ -142,6 +145,7 @@ kcpFrontProxy:
   tag: ""
   pullPolicy: IfNotPresent
   v: "4"
+  containerSecurityContext: []
   shardsKubeConfigFlag: true
   openshiftRoute:
     enabled: false
