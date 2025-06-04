@@ -77,6 +77,10 @@ spec:
         - name: kcp-front-proxy
           image: "{{ .Values.kcpFrontProxy.image }}:{{- include "frontproxy.version" . }}"
           imagePullPolicy: {{ .Values.kcpFrontProxy.pullPolicy }}
+          {{- if .Values.kcpFrontProxy.containerSecurityContext }}
+          securityContext:
+            {{- toYaml .Values.kcpFrontProxy.containerSecurityContext | nindent 12 }}
+          {{- end }}
           command: ["/kcp-front-proxy"]
           args:
             - --secure-port=8443

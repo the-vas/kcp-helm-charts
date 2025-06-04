@@ -114,8 +114,10 @@ spec:
         - name: kcp
           image: {{ .Values.kcp.image }}:{{- include "kcp.version" . }}
           imagePullPolicy: {{ .Values.kcp.pullPolicy }}
+          {{- if .Values.kcp.containerSecurityContext }}
           securityContext:
-            readOnlyRootFilesystem: true
+            {{- toYaml .Values.kcp.containerSecurityContext | nindent 12 }}
+          {{- end }}
           ports:
             - containerPort: 6443
             {{- if .Values.kcp.profiling.enabled }}
